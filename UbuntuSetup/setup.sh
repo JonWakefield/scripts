@@ -1,7 +1,18 @@
 #!/bin/bash
 
+# ------------------------------------------------
 # Ubuntu Development Environment Setup Script
+# ------------------------------------------------
 
+echo "Enter Git Global Name:"
+read name
+echo "Enter Git Global Email:"
+read email
+echo "Enter Git global Editor:"
+read editor
+echo -e "Using values:\nName: $name\nEmail: $email\nEditor: $editor"
+
+exit 1
 # Ensure script is run with sudo
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run with sudo" 
@@ -10,17 +21,16 @@ fi
 
 # Core Dev Tools
 DEV_TOOLS=(
-    "tmux"          # Terminal multiplexer
-    "zsh"           # Advanced shell
+    "tmux"          
+    "zsh"           
     "fzf"           # Fuzzy finder
     "ripgrep"       # Fast search tool
     "apt-transport-https"  # Allows secure package downloads
 )
 
-# Update package lists
 apt update
 
-# Install core dev tools
+# Install dev tools
 apt install -y ${DEV_TOOLS[@]}
 
 # Install Oh My Zsh
@@ -38,9 +48,9 @@ EOF
 
 # Git Configuration Template
 su - $SUDO_USER <<EOF
-git config --global user.name "JonWakefield"
-git config --global user.email "jonwakefield.mi@gmail.com"
-git config --global core.editor "nvim"
+git config --global user.name "$name"
+git config --global user.email "$email"
+git config --global core.editor "$editor"
 EOF
 
 # Cleanup
