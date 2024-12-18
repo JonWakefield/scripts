@@ -1,1 +1,1 @@
-A collection of Bash scripts intended for easy access and retrieval
+A collection of Shell scripts, intended for easy access and retrieval.
