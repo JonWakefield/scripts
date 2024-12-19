@@ -10,10 +10,11 @@ set -e
 echo "Enter Directory to save downloads to"
 
 INSTALL_DIR="/usr/local/bin"
-CHROMEDRIVER_VERSION="114.0.5735.90"
-DOWNLOAD_URL="https://github.com/electron/electron/releases/download/v${CHROMEDRIVER_VERSION}/chromedriver-v${CHROMEDRIVER_VERSION}-linux-arm64.zip"
+CHROMEDRIVER_VERSION="33.3.0"
+DOWNLOAD_URL=https://github.com/electron/electron/releases/download/v${CHROMEDRIVER_VERSION}/chromedriver-v${CHROMEDRIVER_VERSION}-linux-arm64.zip""
 
 # update and install necessary dependencies
+echo "Updating & Downloading necessary dependencies"
 sudo apt-get update
 sudo apt-get install -y \
 	chromium-browser \
