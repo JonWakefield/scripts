@@ -12,11 +12,9 @@ echo "Using Name ${git_name}, using email ${git_email}"
 set -e
 sudo apt update && sudo apt install git
 
-exit 1
 git config --global user.name "${git_name}"
 git config --global user.email "${git_email}"
 
-exit 1
 echo "Generating an ED25519 key"
 ssh-keygen -t ed25519 -C "${git_email}"
 
