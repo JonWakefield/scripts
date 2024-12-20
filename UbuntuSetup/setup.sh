@@ -21,9 +21,6 @@ sudo apt update
 sudo apt install -y ${DEV_TOOLS[@]}
 
 # Install Oh My Zsh
-su - $SUDO_USER <<EOF
-
-# Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # ZSH Plugins
@@ -32,10 +29,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 # Set Zsh as default shell
 sudo chsh -s $(which zsh)
-EOF
 
 # Cleanup
-apt autoremove -y
+sudo apt autoremove -y
 
 echo "Ubuntu Development Environment Setup Complete!"
 echo "Remember to restart your terminal or log out/in to apply changes."
