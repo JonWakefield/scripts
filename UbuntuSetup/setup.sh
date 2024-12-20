@@ -4,16 +4,9 @@
 # Ubuntu Development Environment Setup Script
 # ------------------------------------------------
 
-echo "Enter Git Global Name:"
-read name
-echo "Enter Git Global Email:"
-read email
-echo "Enter Git global Editor:"
-read editor
-echo -e "Using values:\nName: $name\nEmail: $email\nEditor: $editor"
+set -e
 
-exit 1
-# Ensure script is run with sudo
+
 if [[ $EUID -ne 0 ]]; then
    echo "This script must be run with sudo" 
    exit 1
@@ -44,13 +37,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 # Set Zsh as default shell
 chsh -s $(which zsh)
-EOF
-
-# Git Configuration Template
-su - $SUDO_USER <<EOF
-git config --global user.name "$name"
-git config --global user.email "$email"
-git config --global core.editor "$editor"
 EOF
 
 # Cleanup
