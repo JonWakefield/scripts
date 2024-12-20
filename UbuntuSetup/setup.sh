@@ -6,12 +6,6 @@
 
 set -e
 
-
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run with sudo" 
-   exit 1
-fi
-
 # Core Dev Tools
 DEV_TOOLS=(
     "tmux"          
@@ -21,13 +15,14 @@ DEV_TOOLS=(
     "apt-transport-https"  # Allows secure package downloads
 )
 
-apt update
+sudo apt update
 
 # Install dev tools
-apt install -y ${DEV_TOOLS[@]}
+sudo apt install -y ${DEV_TOOLS[@]}
 
 # Install Oh My Zsh
 su - $SUDO_USER <<EOF
+
 # Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
@@ -36,7 +31,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Set Zsh as default shell
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
 EOF
 
 # Cleanup
