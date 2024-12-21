@@ -5,6 +5,8 @@
 # ------------------------------------------------
 
 set -e
+NERD_FONTS_VERSION="v3.3.0"
+NERD_FONTS_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/${NERD_FONTS_VERSION}/JetBrainsMono.zip"
 
 # Core Dev Tools
 DEV_TOOLS=(
@@ -29,6 +31,23 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 # Set Zsh as default shell
 sudo chsh -s $(which zsh)
+
+echo "Downloading jetbrains nerdfonts"
+mkdir -p ~/.local/share/fonts
+wget -P ~/.local/share/fonts $NERD_FONTS_URL
+unzip ~/.local/share/fonts/JetBrainsMono.zip -d ~/.local/share/fonts/
+sudo rm ~/.local/share/fonts/JetBrainsMono.zip
+fc-cache -fv # updates font cache
+
+echo "Downloading Tmux Plugin Manager (TPM)"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+cp ./.tmux.conf ~/.tmux.conf
+tmux source ~/.tmux.conf
+
+# setup Catpuccin themes for zsh
+#mkdir -p ~/.config/tmux/plugins/catppuccin
+#git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
+#echo "run ~/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux" >> ~/.tmux.conf
 
 # Cleanup
 sudo apt autoremove -y
