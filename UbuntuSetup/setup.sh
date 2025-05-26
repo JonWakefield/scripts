@@ -15,6 +15,8 @@ DEV_TOOLS=(
     "fzf"           # Fuzzy finder
     "ripgrep"       # Fast search tool
     "apt-transport-https"  # Allows secure package downloads
+    "ufw"
+    "sqlite3"
 )
 
 sudo apt update
